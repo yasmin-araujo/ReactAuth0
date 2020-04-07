@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
-// import { Container } from './styles';
-
 class Home extends Component {
-  render() {
-    return <h1>Home</h1>;
-  }
+    render() {
+        const { isAuthenticated, login } = this.props.auth;
+		return (
+			<div>
+				<h1>Home</h1>
+					<button onClick={login}>Log In</button>
+			</div>
+		);
+	}
 }
 
 export default Home;

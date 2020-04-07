@@ -11,4 +11,8 @@ export default class Auth {
 			scope: 'openid profile email' // permissions
 		});
 	}
+
+	login = () => {
+		this.auth0.authorize(); // redirect the browser to the Auth0 login page
+	};
 }
