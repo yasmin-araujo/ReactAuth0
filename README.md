@@ -1,6 +1,6 @@
 # ReactAuth0
 
-App made for "Securing React Apps with Auth0" online course powered by Pluralsight
+App created for the online course "Securing React Apps with Auth0", powered by Pluralsight
 
 <!-- ## Technologies
 
