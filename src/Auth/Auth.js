@@ -7,7 +7,8 @@ export default class Auth {
 		this.auth0 = new auth0.WebAuth({
 			domain: process.env.REACT_APP_AUTH0_DOMAIN,
 			clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-			redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+            redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+            audience: process.env.REACT_APP_AUTH0_AUDIENCE,
 			responseType: 'token id_token', // token: so user can make API calls // id_token: JWT token to authenticate the user when they login
 			scope: 'openid profile email' // permissions
 		});
