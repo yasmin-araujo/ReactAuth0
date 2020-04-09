@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const jwt = require('express-jwt'); // Validate JWT and set req.user
 const jwksRsa = require('jwks-rsa'); // Retrieve RSA keys from a JSON Web Key set (JWKS) endpoint
+const checkScope = require('express-jwt-authz'); // Validate JWT scopes
 
 const checkJwt = jwt({
 	// Dynamically provide a signing key based on the kid in the header
@@ -34,6 +35,17 @@ app.get('/private', checkJwt, function(req, res) {
 	//Express supports declraing multiple arguments here to validate the request, if any of hte checks in the middle fail, then the request will fail
 	res.json({
 		message: 'Hello from a private API!'
+	});
+});
+
+app.get('/course', checkJwt, checkScope([ 'read:courses' ]), function(req, res) {
+	//checkScope([ 'read:courses' ]): scope that we're requiring to be able to make a call to this endpoint
+	res.json({
+		courses: [
+			{ id: 1, title: 'Building Apps with React and Redux' },
+			{ id: 2, title: 'Building Apps with React and Node' },
+			{ id: 3, title: 'Creating Reusabloe React Components' }
+		]
 	});
 });
 

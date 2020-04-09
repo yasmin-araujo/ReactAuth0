@@ -2,7 +2,10 @@
 
 App created for the online course "Securing React Apps with Auth0", powered by Pluralsight
 
-<!-- ## Technologies
+### Used in this application:
 
 - ReactJS
-- Auth0 -->
+- NodeJS
+- Express
+- Auth0
+- OAuth 2
