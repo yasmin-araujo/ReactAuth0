@@ -15,7 +15,7 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<>
 				<Nav auth={this.auth} />
 				<div className="body">
 					<Route path="/" exact render={(props) => <Home auth={this.auth} {...props} />} />
@@ -25,10 +25,14 @@ class App extends Component {
 						render={(props) =>
 							this.auth.isAuthenticated() ? <Profile auth={this.auth} {...props} /> : <Redirect to="/" />}
 					/>
-                    <Route path="/public" component={Public} />
-					<Route path="/private" render={(props) => <Private auth={this.auth} {...props} />} />
+					<Route path="/public" component={Public} />
+					<Route
+						path="/private"
+						render={(props) =>
+							this.auth.isAuthenticated() ? <Private auth={this.auth} {...props} /> : this.auth.login()}
+					/>
 				</div>
-			</div>
+			</>
 		);
 	}
 }

@@ -9,7 +9,7 @@ class Public extends Component {
 		fetch('/public')
 			.then((response) => {
 				if (response.ok) return response.json(); //convert response to Json
-				throw new Error('Networl response was not ok.');
+				throw new Error('Network response was not ok.');
 			})
             .then((response) => this.setState({ message: response.message })) // handle json response
             .catch(error => this.setState({ message: error.message })); //catch  any errors that may be returned

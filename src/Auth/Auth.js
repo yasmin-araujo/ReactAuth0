@@ -2,13 +2,13 @@ import auth0 from 'auth0-js';
 
 export default class Auth {
 	constructor(history) {
-        this.history = history;
-        this.userProfile = null;
+		this.history = history;
+		this.userProfile = null;
 		this.auth0 = new auth0.WebAuth({
 			domain: process.env.REACT_APP_AUTH0_DOMAIN,
 			clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-            redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
-            audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+			redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+			audience: process.env.REACT_APP_AUTH0_AUDIENCE,
 			responseType: 'token id_token', // token: so user can make API calls // id_token: JWT token to authenticate the user when they login
 			scope: 'openid profile email' // permissions
 		});
@@ -72,7 +72,7 @@ export default class Auth {
 	};
 
 	getProfile = (cb) => {
-		if (this.userProfile) return cb(this.history.userProfile);
+		if (this.userProfile) return cb(this.userProfile);
 		this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
 			if (profile) this.userProfile = profile;
 			cb(profile, err);
